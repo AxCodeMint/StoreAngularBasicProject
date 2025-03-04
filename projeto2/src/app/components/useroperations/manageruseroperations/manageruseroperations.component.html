@@ -1,0 +1,4 @@
+<h2>Gestão de utilizadores</h2>
+<app-registeruser></app-registeruser> 
+<app-listusers [users]="usersList" (statusChange)="updateUserStatus($event)" (roleChange)="updateUserRole($event)" (deleteUser)="deleteUser($event)"></app-listusers>
+

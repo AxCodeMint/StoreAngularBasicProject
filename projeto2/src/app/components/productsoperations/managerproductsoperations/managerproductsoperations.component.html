@@ -1,0 +1,4 @@
+<h2>Gestão de produtos</h2>
+<app-insertproduct [productsList]="productsList" (newProduct)="insertNewProduct($event)"></app-insertproduct> 
+<app-searchproduct (handleSearchValue)="searchProducts($event)"></app-searchproduct>
+<app-listproducts [productsList]="productsList" (handlerDeleteProduct)="deleteProduct($event)" (handlerShowInfo)="showInfo($event)"></app-listproducts>

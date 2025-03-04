@@ -1,0 +1,81 @@
+h2 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.wishlistContainer {
+  padding: 20px;
+}
+
+.wishlistItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.wishlistItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  flex: 1;
+}
+
+.wishlistImage {
+  flex: 1;
+  display: flex;
+  justify-content: end;
+}
+
+.wishlistImage img {
+  width: 40%;
+  height: auto;
+}
+
+.wishlistDetails {
+  flex: 1;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.nameText {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.brandText {
+  font-size: 14px;
+}
+
+.priceText {
+  font-size: 18px;
+}
+
+.removeButton {
+  flex: 1;
+  display: flex;
+  justify-content: start; 
+  align-items: center;
+}
+
+.removeButton .btn {
+  font-size: 16px;
+  width: 200px;
+  border-radius: 0;
+}
+
+button {
+  max-width: 200px;
+}
+
+@media (max-width: 768px) {
+  .wishlistItem {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .removeButton, .wishlistImage {
+    display: flex;
+    justify-content: center;
+  }
+}

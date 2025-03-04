@@ -1,0 +1,128 @@
+.pageContainer {
+  display: flex;
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+
+.filterColumn {
+  width: 25%;
+  margin-left: 20px;
+}
+
+h5, p, label  {
+  font-size: 15px;
+}
+
+h5 {
+  background-color: rgb(185, 90, 2);
+  text-align: center;
+  color: white;
+  padding: 5px;
+}
+
+h2 {
+  display: block;
+  margin: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.filterSection {
+  border: 1px solid #ccc;
+}
+
+.filterSection label {
+  display: block;
+  cursor: pointer;
+  padding: 5px 30px;
+}
+
+input {
+  margin-right: 6px;
+}
+
+.productColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.resutsText {
+  margin-left: 30px;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%; 
+}
+
+@media (max-width: 768px) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .productGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.productItem {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.starIcon {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.productItem {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+img {
+  width: 75%;
+  height: auto;
+}
+
+.cardBody p {
+  margin-top: 5px;
+}
+.cardBody p:first-child {
+  font-weight: bold;
+}
+
+button {
+  padding: 6px 8px;
+  border-radius: 7px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  background-color: #9b9b9b;
+  transition: 0.3s all ease;
+}
+
+.btAddCart {
+  background-color: rgba(145, 1, 1, 0.945);
+}
+
+.btSeeMore {
+  background-color: black;
+  border-radius: 0px;
+}
+
+.btSeeMore, .alert {
+ margin: 10px 50px;
+}

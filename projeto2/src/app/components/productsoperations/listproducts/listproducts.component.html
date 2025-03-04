@@ -1,0 +1,54 @@
+<h2 class="mb-4 mt-2">Lista de produtos</h2>
+<p *ngIf="productsList && productsList.length === 0">Não existem produtos que obedeçam à pesquisa.</p>
+
+<p *ngIf="productsList && productsList.length > 0">
+  Total de resultados: {{ productsList.length }}
+</p>
+
+<ng-container *ngIf="productsList && productsList.length > 0">
+  <div class="table">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Foto</th>
+          <th>Nome</th>
+          <th>Marca</th>
+          <th>Tipo</th>
+          <th>Cor</th>
+          <th>Preço</th>
+          <th>Descrição</th>
+          <th>Destaque</th>
+          <th>Operações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of productsList">
+          <td>
+            <img [src]="'assets/' + product.mainImage" alt="{{product.name}}" class="imgThumbnail">
+          </td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.brand }}</td>
+          <td>{{ product.type }}</td>
+          <td>{{ product.color }}</td>
+          <td>{{ product.price | currency: 'EUR': 'symbol': '1.2-2' }}</td>
+          <td>{{ product.description }}</td>
+          <td>
+            <i class="fa" (click)="toggleFeatured(product)">
+              <i [ngClass]="product.featured ? 'fa-check' : 'fa-times'"></i>
+            </i>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="openDeleteConfirmationModal(product.id, $event)">
+              <i class="fa fa-times"></i>
+            </button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-container>
+
+<app-confirmationmodal *ngIf="showMessage" [showModal]="showMessage" [actionType]="actionType" [title]="modalTitle"
+  (confirm)="actionType === 'delete' ? onDeleteConfirmed() : null" (cancel)="onCancelAction()">
+</app-confirmationmodal>

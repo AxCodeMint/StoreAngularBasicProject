@@ -1,0 +1,26 @@
+<section class="modal" *ngIf="showLogin && !isLogged">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <span class="btClose" (click)="closeModal.emit()">X</span>
+            <div class="modal-header">
+                <h5 class="fw-bold">Controlo de acessos</h5>
+            </div>
+            <div class="modal-body">
+                <span id="error" class="error-message" *ngIf="errorMessage">{{ errorMessage }}</span>
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                    <div class="formField">
+                        <label for="email">Email:</label>
+                        <input id="email" formControlName="email" type="email" required>
+                    </div>
+                    <div class="formField">
+                        <label for="password">Senha:</label>
+                        <input id="password" formControlName="password" type="password" required>
+                    </div>
+                    <div class="text-end mt-3">
+                        <button id="validateBtn" type="submit" class="btn btn-primary">Validar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

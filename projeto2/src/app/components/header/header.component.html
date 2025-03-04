@@ -1,0 +1,95 @@
+<header>
+  <nav class="navbar">
+    <ul class="navOptions">
+      <li>
+        <a (click)="goToProducts()">Homem</a>
+        <ul class="dropdownMenu">
+          <li><a href="#">Casacos</a></li>
+          <li><a href="#">Camisas</a></li>
+          <li><a href="#">Calças</a></li>
+          <li><a href="#">Sweatshirts</a></li>
+          <li><a href="#">Polos</a></li>
+          <li><a href="#">Sapatos</a></li>
+          <li><a (click)="goToProducts()">Todos</a></li>
+        </ul>
+      </li>
+      <li class="leftBorder"><a (click)="goToProducts()">Mulher</a>
+        <ul class="dropdownMenu">
+          <li><a href="#">Vestidos</a></li>
+          <li><a href="#">Blusões</a></li>
+          <li><a href="#">Coletes</a></li>
+          <li><a href="#">Jeans</a></li>
+          <li><a href="#">Saias</a></li>
+          <li><a href="#">Calções</a></li>
+          <li><a href="#">Lingerie</a></li>
+          <li><a href="#">Sapatos</a></li>
+          <li><a href="#">Malas</a></li>
+          <li><a href="#">Todos</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <a class="logo" (click)="logoClick()">
+      <img src="logo.png" alt="Logo" class="logo">
+    </a>
+
+    <ul class="navOptions">
+      <li><a (click)="goToProducts()">Criança</a>
+        <ul class="dropdownMenu">
+          <li><a href="#">Menina | 6-14 Anos</a></li>
+          <li><a href="#">Menino | 6-14 Anos</a></li>
+          <li><a href="#">Bebé Menina | 3 Meses - 5 Anos</a></li>
+          <li><a href="#">Bebé Menino | 3 Meses - 5 Anos</a></li>
+          <li><a href="#">Mini | 0-12 Meses</a></li>
+        </ul>
+      </li>
+      <li class="leftBorder"><a (click)="goToProducts()">Acessórios</a>
+        <ul class="dropdownMenu">
+          <li><a href="#">Malas</a></li>
+          <li><a href="#">Pulseiras</a></li>
+          <li><a href="#">Anéis</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <section class="icons">
+    <span *ngIf="!isLogged">
+      <a (click)="openRegisterPage()">
+        <i class="fa-solid fa-user-plus" title="Registo"></i>
+      </a>
+      <a (click)="openLoginForm()">
+        <i class="fa-solid fa-arrow-right-to-bracket" title="Login"></i>
+      </a>
+    </span>
+
+    <span *ngIf="isLogged">
+      <p id="welcomeText">Bem-vindo, {{ userInfo?.name }}!</p>
+      <a (click)="openProfilePage()">
+        <i class="fa-regular fa-user" title="Perfil"></i>
+      </a>
+      <a (click)="openList()">
+        <i class="fa-regular fa-clipboard" title="Wishlist"></i>
+      </a>
+      <a (click)="openCart()">
+        <i class="fa-solid fa-cart-shopping" title="Shopping Cart"></i>
+      </a>
+      <a *ngIf="userInfo?.role === 'admin' " (click)="openAdministrationPage()">
+        <i class="fa-solid fa-gear" title="Administration"></i>
+      </a>
+     
+      <a (click)="openLogoutModal()">
+        <i class="fa-solid fa-arrow-right-from-bracket" title="Logout"></i>
+      </a>
+    </span>
+  </section>
+
+  <app-login *ngIf="showLogin" [showLogin]="showLogin" (loginSuccess)="onLoginSuccess($event)"
+    (closeModal)="closeLoginForm()">
+  </app-login>
+
+  <app-confirmationmodal *ngIf="showModal" [showModal]="showModal" [title]="modalTitle" [actionType]="actionType"
+    (confirm)="actionType === 'logout' ? onLogoutConfirmed() : null" (cancel)="onCancelAction()">
+  </app-confirmationmodal>
+
+</header>

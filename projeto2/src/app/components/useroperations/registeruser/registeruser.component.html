@@ -1,0 +1,80 @@
+<div class="container mt-4">
+    <h4 class="text-center my-4">Registo de novo utilizador</h4>
+    <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+
+        <div class="mb-3 row">
+            <label for="name" class="col-sm-2 col-form-label">Nome</label>
+            <div class="col-sm-10">
+                <input id="name" class="form-control" formControlName="name" required>
+                <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+                    <small class="text-danger">Este campo é obrigatório.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input id="email" type="email" class="form-control" formControlName="email" required>
+                <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                    <small class="text-danger">Por favor, insira um email válido.</small>
+                </div>
+                <div *ngIf="registerForm.get('email')?.hasError('emailExists')">
+                    <small class="text-danger">Este email já está registado.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="password" class="col-sm-2 col-form-label">Senha</label>
+            <div class="col-sm-10">
+                <input id="password" type="password" class="form-control" formControlName="password" required>
+                <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                    <small class="text-danger">
+                        A senha deve ter pelo menos 8 caracteres, uma letra maiúscula, uma letra minúscula, um número e um símbolo.
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="address" class="col-sm-2 col-form-label">Morada</label>
+            <div class="col-sm-10">
+                <input id="address" class="form-control" formControlName="address" required>
+                <div *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched">
+                    <small class="text-danger">Este campo é obrigatório.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="postalCode" class="col-sm-2 col-form-label">Código Postal</label>
+            <div class="col-sm-10">
+                <input id="postalCode" class="form-control" formControlName="postalCode" required>
+                <div *ngIf="registerForm.get('postalCode')?.invalid && registerForm.get('postalCode')?.touched">
+                    <small class="text-danger">Este campo é obrigatório.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="country" class="col-sm-2 col-form-label">País</label>
+            <div class="col-sm-10">
+                <input id="country" class="form-control" formControlName="country" required>
+                <div *ngIf="registerForm.get('country')?.invalid && registerForm.get('country')?.touched">
+                    <small class="text-danger">Este campo é obrigatório.</small>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary d-block mx-auto my-5" [disabled]="registerForm.invalid">Registar</button>
+    </form>
+</div>
+
+<app-confirmationmodal *ngIf="showModal" 
+[showModal]="showModal" 
+[title]="modalTitle" 
+[message]="modalMessage"
+    [actionType]="actionType" (confirm)="onRegisterConfirmed()"
+    (cancel)="cancelAction()">
+</app-confirmationmodal>

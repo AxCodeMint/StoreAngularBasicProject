@@ -1,0 +1,26 @@
+<h2 class="text-center my-5 fw-bold">Lista de Desejos</h2>
+<div class="wishlistContainer my-4">
+  <div *ngIf="isLoading" class="loading">A carregar...</div>
+
+  <div *ngIf="!isLoading && wishlistItems.products.length === 0" class="noItems">
+    <p>A sua lista de desejos está vazia.</p>
+  </div>
+
+  <div class="wishlistItems" *ngIf="!isLoading && wishlistItems.products.length > 0">
+    <div *ngFor="let item of wishlistItems.products" class="wishlistItem mx-2" (click)="goToProductPage(item)">
+      <div class="wishlistImage">
+        <img [src]="'assets/' + item.mainImage" alt="{{ item.name }}">
+      </div>
+      <div class="wishlistDetails">
+        <h3 class="nameText">{{ item.name }}</h3>
+        <p class="brandText">{{ item.brand }}</p>
+        <p class="priceText">{{ item.price | currency:'EUR':'symbol':'1.0-0' }}</p>
+      </div>
+      <div class="removeButton">
+        <button class="btn btn-danger" (click)="removeFromList(item, $event)">Remover</button>
+      </div>
+    </div>
+    <button class="btn btn-danger" (click)="clearList()">Limpar Lista</button>
+  </div>
+
+</div>

@@ -1,0 +1,26 @@
+<div class="container" *ngIf="product">
+    <div class="text-center">
+        <h2 class="mb-3">{{ product.brand }}</h2>
+        <h3 class="mb-3">{{ product.name }}</h3>
+
+        <div class="mb-3">
+            <img [src]="'assets/' + product.mainImage" class="product-img mb-3" alt="{{ product.name }}">
+            <img [src]="'assets/' + product.secondaryImage" class="product-img" alt="{{ product.name }}">
+        </div>
+
+        <div>
+            <p>{{ product.type }} {{ product.color }}</p>
+            <p>{{ product.price | currency:'EUR':'symbol':'1.2-2' }}</p>
+            <p>{{ product.description }}</p>
+
+            <p>
+                <button *ngIf="isLogged" (click)="addToCart()" class="btn btn-primary mt-3">Adicionar ao
+                    Carrinho</button>
+            </p>
+            <p>
+                <button (click)="goBack()" class="btn btn-secondary mt-3">Voltar</button>
+            </p>
+            <div *ngIf="message" class="alert alert-success mt-3">{{ message }}</div>
+        </div>
+    </div>
+</div>

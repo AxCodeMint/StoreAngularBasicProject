@@ -1,0 +1,12 @@
+<div>
+    <h4 class="text-center">Destaques</h4>
+    <div class="row">
+      <div *ngFor="let product of featuredProducts" class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="product-item">
+          <a (click)="productSelection(product.id)"> 
+            <img [src]="'assets/' + product.mainImage" class="img-fluid product-image" alt="{{ product.name }}"> 
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>

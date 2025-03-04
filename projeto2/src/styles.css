@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    font-family: 'Open Sans', sans-serif;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.mat-body-large, .mat-typography .mat-body-large, .mat-typography, h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Open Sans', sans-serif; }
+
+

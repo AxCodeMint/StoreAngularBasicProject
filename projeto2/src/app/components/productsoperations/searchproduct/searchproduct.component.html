@@ -1,0 +1,11 @@
+<div class="row mb-4">
+    <div class="col-sm-12">
+        <div class="d-flex align-items-center">
+            <label for="searchValue">Pesquisa:</label>
+            <input type="text" id="searchValue" [(ngModel)]="searchValue" (keyup)="searchProduct()"
+                class="form-control flex-grow-1" placeholder="Pesquisa...">
+            <input type="button" value="Pesquisa" (click)="searchProduct()" class="btn btn-primary">
+            <input type="button" value="Limpar pesquisa" (click)="clearSearch()" class="btn btn-secondary ml-2">
+        </div>
+    </div>
+</div>  

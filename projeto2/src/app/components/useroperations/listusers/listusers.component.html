@@ -1,0 +1,57 @@
+<p *ngIf="users && users.length === 0">Não existem utilizadores registados.</p>
+
+<div *ngIf="users && users.length > 0">
+  <table class="table table-bordered table-striped mt-4">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Morada</th>
+        <th>Código Postal</th>
+        <th>País</th>
+        <th>Editar estado</th>
+        <th>Editar role</th>
+        <th>Eliminar utilizador</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.address }}</td>
+        <td>{{ user.postalCode }}</td>
+        <td>{{ user.country }}</td>
+        <td>
+          <label class="switch">
+            <input 
+              type="checkbox" 
+              [checked]="user.active" 
+              (change)="onToggleStatus(user)">
+            <span class="slider round"></span>
+          </label>
+          <span *ngIf="user.active" class="text-success"> Ativo</span>
+          <span *ngIf="!user.active" class="text-danger"> Inativo</span>
+        </td>
+        <td>
+          <label class="switch">
+            <input 
+              type="checkbox" 
+              [checked]="user.role === 'admin'" 
+              (change)="onToggleRole(user)">
+            <span class="slider round"></span>
+          </label>
+          <span *ngIf="user.role === 'admin'"> Admin</span>
+          <span *ngIf="user.role === 'user'"> User</span>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="openDeleteConfirmationModal(user.id, $event)">
+            <i class="fa fa-trash"></i> Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-confirmationmodal *ngIf="showMessage" [showModal]="showMessage" [actionType]="actionType" [title]="modalTitle" (confirm)="actionType === 'delete' ? onDeleteConfirmed() : null" (cancel)="onCancelAction()">
+</app-confirmationmodal>

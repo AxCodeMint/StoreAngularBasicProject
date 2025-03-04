@@ -1,0 +1,24 @@
+<h2 class="text-center my-5 fw-bold">Administração</h2>
+<div class="container mt-4">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#products">
+                Gestão de produtos
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#users">
+                Gestão de utilizadores
+            </button>
+        </li>
+    </ul>
+    <div class="tab-content mt-3">
+        <div class="tab-pane fade show active" id="products">
+            <app-managerproductsoperations></app-managerproductsoperations>
+        </div>
+
+        <div class="tab-pane fade" id="users">
+            <app-manageruseroperations></app-manageruseroperations>
+        </div>
+    </div>
+</div>

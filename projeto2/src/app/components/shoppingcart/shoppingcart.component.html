@@ -1,0 +1,40 @@
+<h2 class="text-center my-5 fw-bold">Carrinho de Compras</h2>
+<div class="container my-5">
+
+  <div *ngIf="cartItems.products.length === 0" class="alert alert-info">
+    Seu carrinho está vazio.
+  </div>
+
+  <table *ngIf="cartItems.products.length > 0" class="table">
+    <thead>
+      <tr>
+        <th>Imagem</th>
+        <th>Marca</th>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems.products" (click)="goToProductPage(item)">
+        <td><img [src]="'assets/' + item.mainImage" alt="{{ item.name }}" width="50"></td>
+        <td>{{ item.brand }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.price | currency: 'EUR':'symbol':'1.2-2' }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="removeFromCart(item, $event)">Remover</button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3"><strong>Total da encomenda:</strong></td>
+        <td colspan="2">{{ getTotalPrice() | currency: 'EUR':'symbol':'1.2-2' }}</td>
+      </tr>
+    </tfoot>
+  </table>
+  <p *ngIf="cartItems.products.length > 0">
+    Total de produtos no carrinho: {{ cartItems.products.length }}
+  </p>
+  <button (click)="clearCart()" class="btn btn-danger mt-3">Limpar Carrinho</button>
+</div>

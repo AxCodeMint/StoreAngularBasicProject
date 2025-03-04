@@ -1,0 +1,12 @@
+h2 {
+    font-size: 32px;
+}
+
+.nav-link.active {
+    background-color: rgb(205, 212, 240);
+    color: rgb(11, 24, 78);
+}
+
+.nav-link {
+    color: rgb(52, 70, 139);
+}

@@ -1,0 +1,108 @@
+<form [formGroup]="productForm" (ngSubmit)="openInsertConfirmationModal()">
+    <div class="mb-3 row">
+        <label for="name" class="col-md-3 col-form-label">Nome do Produto:</label>
+        <div class="col-md-9">
+            <input type="text" id="name" formControlName="name" class="form-control">
+            <div *ngIf="productForm.get('name')?.touched && productForm.get('name')?.invalid" class="text-danger">
+                <small *ngIf="productForm.get('name')?.hasError('required')">O campo 'Produto' é obrigatório.</small>
+                <small *ngIf="productForm.get('name')?.hasError('pattern')">Somente letras e espaços permitidos.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="brand" class="col-md-3 col-form-label">Marca:</label>
+        <div class="col-md-9">
+            <input type="text" id="brand" formControlName="brand" class="form-control">
+            <div *ngIf="productForm.get('brand')?.touched && productForm.get('brand')?.invalid" class="text-danger">
+                <small>O campo 'Marca' é obrigatório.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="type" class="col-md-3 col-form-label">Tipo:</label>
+        <div class="col-md-9">
+            <select id="type" formControlName="type" class="form-select" required>
+                <option value="" disabled selected>Selecione um tipo</option>
+                <option *ngFor="let type of productTypes" [value]="type.id">{{ type.name }}</option>
+            </select>
+            <div *ngIf="productForm.get('type')?.touched && productForm.get('type')?.invalid" class="text-danger">
+                <small *ngIf="productForm.get('type')?.hasError('required')">O campo 'Tipo' é obrigatório.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="color" class="col-md-3 col-form-label">Cor:</label>
+        <div class="col-md-9">
+            <input type="text" id="color" formControlName="color" class="form-control">
+            <div *ngIf="productForm.get('color')?.touched && productForm.get('color')?.invalid" class="text-danger">
+                <small>O campo 'Cor' é obrigatório.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="price" class="col-md-3 col-form-label">Preço:</label>
+        <div class="col-md-9">
+            <input type="number" id="price" formControlName="price" class="form-control" min="0">
+            <div *ngIf="productForm.get('price')?.touched && productForm.get('price')?.invalid" class="text-danger">
+                <small *ngIf="productForm.get('price')?.hasError('required')">O campo 'Preço' é obrigatório.</small>
+                <small *ngIf="productForm.get('price')?.hasError('min')">O preço deve ser maior que 0.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="description" class="col-md-3 col-form-label">Descrição:</label>
+        <div class="col-md-9">
+            <textarea id="description" formControlName="description" class="form-control"></textarea>
+            <div *ngIf="productForm.get('description')?.touched && productForm.get('description')?.invalid" class="text-danger">
+                <small>O campo 'Descrição' é obrigatório.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="mainImage" class="col-md-3 col-form-label">Imagem Principal:</label>
+        <div class="col-md-9">
+            <input type="url" id="mainImage" formControlName="mainImage" class="form-control">
+            <div *ngIf="productForm.get('mainImage')?.touched && productForm.get('mainImage')?.invalid" class="text-danger">
+                <small>O campo 'Imagem Principal' é obrigatório.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="secondaryImage" class="col-md-3 col-form-label">Imagem Secundária:</label>
+        <div class="col-md-9">
+            <input type="url" id="secondaryImage" formControlName="secondaryImage" class="form-control">
+            <div *ngIf="productForm.get('secondaryImage')?.touched && productForm.get('secondaryImage')?.invalid" class="text-danger">
+                <small>O campo 'Imagem Secundária' é obrigatório.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3 row align-items-center">
+        <label for="featured" class="col-md-3 col-form-label">Destaque:</label>
+        <div class="col-md-9">
+            <div class="form-check form-switch">
+                <input type="checkbox" id="featured" formControlName="featured" class="form-check-input">
+                <label class="form-check-label" for="featured">
+                    {{ productForm.get('featured')?.value ? 'Destacado' : 'Não destacado' }}
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="col-md-2">
+            <button type="submit" [disabled]="productForm.invalid" class="btn btn-primary mt-4 mb-4">Inserir Produto</button>
+        </div>
+    </div>
+</form>
+
+<app-confirmationmodal *ngIf="showSuccessMessage" [showModal]="showSuccessMessage" [title]="modalTitle"
+    [actionType]="actionType" (confirm)="onMessageConfirmed()" (cancel)="onCancelAction()">
+</app-confirmationmodal>

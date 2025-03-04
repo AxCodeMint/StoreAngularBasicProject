@@ -1,0 +1,54 @@
+<div class="pageContainer">
+  <div class="filterColumn">
+    <div class="filterSection">
+      <h5>Tipo</h5>
+      <label *ngFor="let type of types">
+        <input type="radio" name="typeFilter" (change)="applyTypeFilter(type)" [checked]="type === selectedType"/>
+        {{ type }}
+      </label>
+      <label>
+        <input type="radio" name="typeFilter" (change)="applyTypeFilter('Todos')"
+          [checked]="selectedType === 'Todos'"/>
+        Todos
+      </label>
+    </div>
+
+    <div class="filterSection">
+      <h5>Cor</h5>
+      <label *ngFor="let color of colors">
+        <input type="radio" name="colorFilter" (change)="applyColorFilter(color)" [checked]="color === selectedColor" />
+        {{ color }}
+      </label>
+      <label>
+        <input type="radio" name="colorFilter" (change)="applyColorFilter('Todos')"
+          [checked]="selectedColor === 'Todos'"/>
+        Todos
+      </label>
+    </div>
+  </div>
+
+  <div class="productColumn">
+    <h2>Homem</h2>
+    <p class="resutsText">Total de resultados: {{ filteredProducts.length }}</p>
+    <div class="productGrid">
+      <div *ngFor="let product of paginatedProducts" class="productItem">
+        <div>
+          <a *ngIf="isLogged" (click)="addOrRemoveFromList(product, $event)">
+            <i class="starIcon fa" [ngClass]="isInWishlist(product) ? 'fas fa-star' : 'far fa-star'" title="Wishlist"></i>
+          </a>
+          <img [src]="'assets/' + product.mainImage" alt="{{ product.name }}"  (mouseover)="showSecondaryImage(product)" (mouseout)="showMainImage(product)" 
+            (click)="goToProductDetails(product)" />
+          <div class="cardBody">
+            <p>{{ product.brand }}</p>
+            <p>{{ product.name }}</p>
+            <p>{{ product.price | currency:'EUR':'symbol':'1.0-0' }}</p>
+            <p><button class="btAddCart" *ngIf="isLogged" (click)="addToCart(product)">Adicionar ao carrinho</button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btSeeMore" *ngIf="hasMoreProducts" (click)="loadMore()">Ver Mais</button>
+    <span *ngIf="message" class="alert alert-success mt-3">{{ message }}</span>
+  </div>
+</div>
